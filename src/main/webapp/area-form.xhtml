@@ -3,11 +3,114 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="layout.xhtml">
         <ui:define name="content">
-            <h:form id="productForm">
-                areas
+           <h:form id="productForm">
+                <p:panel header="Administración de los usuarios">
+                    <p:growl id="messages" showDetail="true"/>
+
+                    <p:toolbar>
+                        <p:toolbarGroup>
+                            <p:commandButton value="Nuevo Usuario" icon="pi pi-plus" actionListener="#{usuariosControlador.nuevoUsuario}"
+                                             update=":formdialogcrud:manage-dialogcrud-content" oncomplete="PF('manageDialogCrud').show()"
+                                             styleClass="ui-button-success" style="margin-right: .5rem">
+                                <p:resetInput target=":formdialogcrud:manage-dialogcrud-content"/>
+                            </p:commandButton>
+
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                    <p:dataTable id="dt-products" widgetVar="dtProducts" var="usuario" value="#{usuariosControlador.usuarios}"
+                                 reflow="true" styleClass="products-table"
+                                 rowKey="#{usuario.id}" paginator="true"
+                                 rows="10" rowSelectMode="add" paginatorPosition="bottom">
+                        <p:column headerText="Id" sortBy="#{usuario.idxxxxxx}" filterBy="#{usuario.idxxxxxx}">
+                            <h:outputText value="#{usuario.idxxxxxx}"/>
+                        </p:column>
+                        <p:column headerText="Primer Apellido" sortBy="#{usuario.seguapel}" filterBy="#{usuario.seguapel}">
+                            <h:outputText value="#{usuario.seguapel}"/>
+                        </p:column>
+                        <p:column headerText="Segundo Apellido" sortBy="#{usuario.primapel}" filterBy="#{usuario.primapel}">
+                            <h:outputText value="#{usuario.primapel}"/>
+                        </p:column>
+                        <p:column headerText="Primer Nombre" sortBy="#{usuario.primnomb}" filterBy="#{usuario.primnomb}">
+                            <h:outputText value="#{usuario.primnomb}"/>
+                        </p:column>
+                        <p:column headerText="Segundo Nombre" sortBy="#{usuario.segunomb}" filterBy="#{usuario.segunomb}">
+                            <h:outputText value="#{usuario.segunomb}"/>
+                        </p:column>
+                        <p:column headerText="Otro Nombre" sortBy="#{usuario.otronomb}" filterBy="#{usuario.otronomb}">
+                            <h:outputText value="#{usuario.otronomb}"/>
+                        </p:column>
+                        <p:column headerText="Cédula" sortBy="#{usuario.cedulaxx}" filterBy="#{usuario.cedulaxx}">
+                            <h:outputText value="#{usuario.cedulaxx}"/>
+                        </p:column>
+                        <p:column headerText="Email" sortBy="#{usuario.emailxxx}" filterBy="#{usuario.emailxxx}">
+                            <h:outputText value="#{usuario.emailxxx}"/>
+                        </p:column>
+                        <p:column headerText="Email" sortBy="#{usuario.emailxxx}" filterBy="#{usuario.emailxxx}">
+                            <h:outputText value="#{usuario.emailxxx}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+            <h:form id="formdialogcrud">
+                <p:dialog header="Product Details" modal="true" width="60%" height="350"  showEffect="fade" hideEffect="fade" resizable="false"
+                          widgetVar="manageDialogCrud" responsive="true">
+                    <p:outputPanel id="manage-dialogcrud-content" class="ui-fluid">
+                        <div class="ui-g">
+                            <div class="ui-g-4">                                
+                                <label for="primapel">Primer Apellido</label>
+                                <p:inputText id="primapel" type="text" label="Primer Apellido" value="#{usuariosControlador.usuariox.primapel}">
+                                  
+                                </p:inputText>
+                                <h:message for="primapel" style="color:red" />
+                            </div>
+                            <div class="ui-g-4">
+                                <label for="seguapel">Segundo Apellido</label>
+                                <p:inputText id="seguapel" type="text" label="Primer Apellido" value="#{usuariosControlador.usuariox.seguapel}" />
+                            </div>
+                            <div class="ui-g-4">
+                                <label for="primnomb">Primer Nombre</label>
+                                <p:inputText id="primnomb" type="text" value="#{usuariosControlador.usuariox.primnomb}"   />
+                            </div>
+                            <div class="ui-g-4">
+                                <label for="segunomb">Segundo Nombre</label>
+                                <p:inputText id="segunomb" type="text" value="#{usuariosControlador.usuariox.segunomb}"  />
+                            </div>
+                            <div class="ui-g-4">
+                                <label for="otronomb">Otro Nombre</label>
+                                <p:inputText id="otronomb" type="text" value="#{usuariosControlador.usuariox.segunomb}" />
+                            </div>
+
+                            <div class="ui-g-4">
+                                <label for="cedulax">C&Eacute;dula</label>
+                                <p:inputText id="cedulaxx" type="text"  />
+                            </div>
+
+                            <div class="ui-g-4">
+                                <label for="doctipoid">Tipo de Documento</label>
+                                <p:inputText id="doctipoid" type="text"  />
+                            </div>
+                            <div class="ui-g-4">
+                                <label for="areaid">&Aacute;rea Administrativa</label>
+                                <p:inputText id="areid" type="text" />
+                            </div>
+                            <div class="ui-g-4">
+                                <label for="paiseid">Pa&Iacute;s donde labora</label>
+                                <p:inputText id="paiseid" type="text"  />
+                            </div>
+                        </div>
+
+                    </p:outputPanel>
+                    <f:facet name="footer">
+                        <p:commandButton value="Guardar Usuario" icon="pi pi-check" actionListener="#{usuariosControlador.guardarUsuario}"
+                                         update="manage-dialogcrud-content" process="manage-dialogcrud-content @this"/>
+                        <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('manageDialogCrud').hide()"
+                                         class="ui-button-secondary"/>
+                    </f:facet>
+                </p:dialog>
             </h:form>
         </ui:define>
     </ui:composition>

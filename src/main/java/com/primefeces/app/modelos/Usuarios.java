@@ -18,7 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 /**
  *
  * @author NOWEN
@@ -32,7 +31,7 @@ public class Usuarios implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private Integer idxxxxxx;
     @Basic(optional = false)
     @Column(name = "primnomb")
     private String primnomb;
@@ -71,14 +70,16 @@ public class Usuarios implements Serializable {
     private Integer paiseid;
 
     public Usuarios() {
+        this.estadoid = 1;
+        this.fhregistr = new Date();
     }
 
-    public Usuarios(Integer id) {
-        this.id = id;
+    public Usuarios(Integer idxxxxxx) {
+        this.idxxxxxx = idxxxxxx;
     }
 
-    public Usuarios(Integer id, String primnomb, String segunomb, String primapel, String seguapel, String otronomb, String cedulaxx, String emailxxx, Date fechingr) {
-        this.id = id;
+    public Usuarios(Integer idxxxxxx, String primnomb, String segunomb, String primapel, String seguapel, String otronomb, String cedulaxx, String emailxxx, Date fechingr) {
+        this.idxxxxxx = idxxxxxx;
         this.primnomb = primnomb;
         this.segunomb = segunomb;
         this.primapel = primapel;
@@ -89,12 +90,12 @@ public class Usuarios implements Serializable {
         this.fechingr = fechingr;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdxxxxxx() {
+        return idxxxxxx;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdxxxxxx(Integer idxxxxxx) {
+        this.idxxxxxx = idxxxxxx;
     }
 
     public String getPrimnomb() {
@@ -204,7 +205,7 @@ public class Usuarios implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idxxxxxx != null ? idxxxxxx.hashCode() : 0);
         return hash;
     }
 
@@ -215,7 +216,7 @@ public class Usuarios implements Serializable {
             return false;
         }
         Usuarios other = (Usuarios) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idxxxxxx == null && other.idxxxxxx != null) || (this.idxxxxxx != null && !this.idxxxxxx.equals(other.idxxxxxx))) {
             return false;
         }
         return true;
@@ -223,7 +224,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "com.primefeces.app.modelos.Usuarios[ id=" + id + " ]";
+        return "com.primefeces.app.modelos.Usuarios[ id=" + idxxxxxx + " ]";
     }
 
 }

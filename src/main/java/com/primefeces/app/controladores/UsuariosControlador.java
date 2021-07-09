@@ -26,7 +26,7 @@ import org.springframework.stereotype.Controller;
  *
  * @author NOWEN
  */
-@Join(path = "/", to = "/usuarios/nuevo-form.jsf")
+@Join(path = "/", to = "/usuario-form.jsf")
 @Controller
 public class UsuariosControlador implements Serializable {
 
@@ -37,6 +37,8 @@ public class UsuariosControlador implements Serializable {
 
     private Date minDateTime;
     private Date maxDateTime;
+
+    private String accionxx;
 
     @PostConstruct
     public void init() throws ParseException {
@@ -82,10 +84,19 @@ public class UsuariosControlador implements Serializable {
     }
 
     public void nuevoUsuario() {
-        this.seleusua = new Usuarios();
+        this.usuariox = new Usuarios();
     }
 
-    public void guardarUsuario() {
+    public String getAccionxx() {
+        return accionxx;
+    }
+
+    public void setAccionxx(String accionxx) {
+        this.accionxx = accionxx;
+    }
+
+    public void registrar() {
+        usuarios.registrar(usuariox);
 //        if (this.selectedProduct.getCode() == null) {
 //            this.selectedProduct.setCode(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 9));
 //            this.products.add(this.selectedProduct);
@@ -97,6 +108,12 @@ public class UsuariosControlador implements Serializable {
 //
 //        PrimeFaces.current().executeScript("PF('manageProductDialog').hide()");
 //        PrimeFaces.current().ajax().update("form:messages", "form:dt-products");
+    }
+    
+// consultar el usuario que se recibe por parametro
+
+    public void leerUsuario(Usuarios usuarixx) {
+        usuariox = usuarios.leerUsuario(usuarixx);
     }
 
     public Date getMinDateTime() throws ParseException {

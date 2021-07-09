@@ -24,4 +24,23 @@ public class UsuariosServicio {
     public List<Usuarios> usuarios() {
         return usuarior.findAll();
     }
+
+    /**
+     *
+     * guardado del usuario
+     */
+    public Usuarios registrar(Usuarios usuariox) {
+        // validaciones para armar el correo
+        usuariox.setEmailxxx("ddjd");
+        usuariox.setEstadoId(1);
+        return usuarior.save(usuariox);
+    }
+
+    /**
+     *
+     * consultar usuario
+     */
+    public Usuarios leerUsuario(Usuarios usuariox) {       
+        return usuarior.findByIdxxxxxx(usuariox.getIdxxxxxx());
+    }
 }
