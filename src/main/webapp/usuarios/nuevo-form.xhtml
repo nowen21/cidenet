@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="../layout.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <p:outputPanel id="manage-dialogcrud-content" class="ui-fluid">
+                    <div class="ui-g">
+                         <div class="ui-g-12">                                
+                            <label for="fechregi">Fecha de registro</label>
+                                                       
+                            <p:datePicker id="fhregistr" value="#{usuariosControlador.usuariox.fhregistr}" showTime="true"
+                                          validatorMessage="Seleccione la fecha de registro" requiredMessage="Seleccione la fecha de registro"
+                          mindate="#{usuariosControlador.minDateTime}" maxdate="#{usuariosControlador.maxDateTime}"/>
+                            <h:message for="fhregistr" style="color:red" />
+                        </div>
+                        <div class="ui-g-4">                                
+                            <label for="primapel">Primer Apellido</label>
+                            <p:inputText id="primapel" type="text" label="El Primer Apellido" value="#{usuariosControlador.usuariox.primapel}">
+                                <f:validator validatorId="CampoRequeridoValidator"/>
+                            </p:inputText>
+                            <h:message for="primapel" style="color:red" />
+                        </div>
+                        <div class="ui-g-4">
+                            <label for="seguapel">Segundo Apellido</label>
+                            <p:inputText id="seguapel" type="text" label="El Segundo Apellido" value="#{usuariosControlador.usuariox.seguapel}" >
+                                <f:validator validatorId="CampoRequeridoValidator"/>
+                            </p:inputText>
+                            <h:message for="seguapel" style="color:red" />
+                        </div>
+                        <div class="ui-g-4">
+                            <label for="primnomb">Primer Nombre</label>
+                            <p:inputText id="primnomb" type="text" label="El Primer Nombre" value="#{usuariosControlador.usuariox.primnomb}"   >
+                                <f:validator validatorId="CampoRequeridoValidator"/>
+                            </p:inputText>
+                            <h:message for="primnomb" style="color:red" />
+                        </div>
+                        <div class="ui-g-4">
+                            <label for="segunomb">Segundo Nombre</label>
+                            <p:inputText id="segunomb" type="text" label="El Segundo Nombre" value="#{usuariosControlador.usuariox.segunomb}"  >
+                                <f:validator validatorId="CampoRequeridoValidator"/>
+                            </p:inputText>
+                            <h:message for="segunomb" style="color:red" />
+                        </div>
+                        <div class="ui-g-4">
+                            <label for="otronomb">Otro Nombre</label>
+                            <p:inputText id="otronomb" type="text" label="El Otro Nombre" value="#{usuariosControlador.usuariox.otronomb}" >
+                                <f:validator validatorId="CampoRequeridoValidator"/>
+                            </p:inputText>
+                            <h:message for="otronomb" style="color:red" />
+                        </div>
+
+                        <div class="ui-g-4">
+                            <label for="cedulax">Cédula</label>
+                            <p:inputText id="cedulaxx" type="text" label="El número de Cédula" value="#{usuariosControlador.usuariox.cedulaxx}">
+                                <f:validator validatorId="CampoRequeridoValidator"/>
+                            </p:inputText>
+                            <h:message for="cedulaxx" style="color:red" />
+                        </div>
+
+                        <div class="ui-g-4">
+                            <label for="doctipoid">Tipo de Documento</label>                           
+                            <p:selectOneMenu id="doctipoid"   value="#{usuariosControlador.usuariox.doctipoid}" filter="true"
+                                             required="true"  validatorMessage="Seleccione el tipo de documento" requiredMessage="Seleccione el tipo de documento"
+                                             panelStyle="width:180px">
+                                <f:selectItem itemLabel=".:SELECCIONE:." itemValue="" />
+                                <f:selectItems value="#{doctiposControlador.doctipos}" />
+                            </p:selectOneMenu>
+                            <h:message for="doctipoid" style="color:red" />
+                        </div>
+                        <div class="ui-g-4">
+                            <label for="areaid">Área Administrativa</label>
+                            <p:selectOneMenu id="areaid"   value="#{usuariosControlador.usuariox.areaid}" filter="true"
+                                             required="true"  validatorMessage="Seleccione el área administrativa" requiredMessage="Seleccione el área administrativa"
+                                             panelStyle="width:180px">
+                                <f:selectItem itemLabel=".:SELECCIONE:." itemValue="" />
+                                <f:selectItems value="#{areasControlador.areaxxxx}" />
+                            </p:selectOneMenu>
+                            <h:message for="areaid" style="color:red" />
+                        </div>
+                        <div class="ui-g-4">
+                            <label for="paiseid">País donde labora</label>
+                            <p:selectOneMenu id="paiseid"   value="#{usuariosControlador.usuariox.paiseid}" filter="true"
+                                             required="true"  validatorMessage="Seleccione el país" requiredMessage="Seleccione el país"
+                                             panelStyle="width:180px">
+                                <f:selectItem itemLabel=".:SELECCIONE:." itemValue="" />
+                                <f:selectItems value="#{paisesControlador.paisesxx}" />
+                            </p:selectOneMenu>
+                            <h:message for="paiseid" style="color:red" />
+                        </div>
+                    </div>
+                </p:outputPanel>
+                <p:commandButton value="Save" ajax="false" icon="pi pi-check" validateClient="true" styleClass="p-mt-3" />
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+</html>

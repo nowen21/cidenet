@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view>
+        <h:head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>Product</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+        </h:head>
+        <h:body>
+
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <div class="jumbotron text-center" style="margin-bottom:0">
+                        <h1>My First Bootstrap 4 Page</h1>
+                        <p>Resize this responsive page to see the effect!</p> 
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <h:form>
+                        <p:growl id="messages"/>
+                        <p:menubar>
+                            <p:menuitem value="Usuarios" url="/" icon="pi pi-list"/>
+                            <p:menuitem value="Areas Administrativas" url="/area" icon="pi pi-list"/>
+                            <p:menuitem value="Tipo de documento" url="/doctipo" icon="pi pi-list"/>
+                            <p:menuitem value="Estados" url="/estado" icon="pi pi-list"/>
+                            <p:menuitem value="Paises" url="/pais" icon="pi pi-list"/>
+                        </p:menubar>
+                    </h:form>
+                </div>
+                <div class="ui-g-12">
+                    <ui:insert name="content" />
+                </div>
+            </div>
+        </h:body>
+    </f:view>
+</html>
+
