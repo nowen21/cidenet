@@ -25,7 +25,7 @@ public class Paises implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private Integer idxxxxxx;
     @Basic(optional = false)
     @Column(name = "pais")
     private String pais;
@@ -36,22 +36,22 @@ public class Paises implements Serializable {
     public Paises() {
     }
 
-    public Paises(Integer id) {
-        this.id = id;
+    public Paises(Integer idxxxxxx) {
+        this.idxxxxxx = idxxxxxx;
     }
 
-    public Paises(Integer id, String pais, String dominio) {
-        this.id = id;
+    public Paises(Integer idxxxxxx, String pais, String dominio) {
+        this.idxxxxxx = idxxxxxx;
         this.pais = pais;
         this.dominio = dominio;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdxxxxxx() {
+        return idxxxxxx;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdxxxxxx(Integer idxxxxxx) {
+        this.idxxxxxx = idxxxxxx;
     }
 
     public String getPais() {
@@ -73,7 +73,7 @@ public class Paises implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idxxxxxx != null ? idxxxxxx.hashCode() : 0);
         return hash;
     }
 
@@ -84,7 +84,7 @@ public class Paises implements Serializable {
             return false;
         }
         Paises other = (Paises) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idxxxxxx == null && other.idxxxxxx != null) || (this.idxxxxxx != null && !this.idxxxxxx.equals(other.idxxxxxx))) {
             return false;
         }
         return true;
@@ -92,7 +92,7 @@ public class Paises implements Serializable {
 
     @Override
     public String toString() {
-        return "com.primefeces.app.modelos.Paises[ id=" + id + " ]";
+        return "com.primefeces.app.modelos.Paises[ id=" + idxxxxxx + " ]";
     }
     
 }

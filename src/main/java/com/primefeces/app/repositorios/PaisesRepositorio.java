@@ -15,5 +15,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PaisesRepositorio extends JpaRepository<Paises, Integer>{
-    
+    public Paises findByIdxxxxxx(Integer id);
 }

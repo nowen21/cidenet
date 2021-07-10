@@ -5,9 +5,7 @@
  */
 package com.primefeces.app.servicios;
 
-import com.primefeces.app.modelos.Doctipos;
 import com.primefeces.app.modelos.Estados;
-import com.primefeces.app.repositorios.DoctiposRepositorio;
 import com.primefeces.app.repositorios.EstadosRepositorio;
 import java.util.HashMap;
 import java.util.List;

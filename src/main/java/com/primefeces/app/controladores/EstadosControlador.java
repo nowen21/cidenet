@@ -32,7 +32,7 @@ public class EstadosControlador {
     
     private Estados estado;
     
-     private List<Estados> listestados;
+    private List<Estados> listestados;
 
 
     Map<String, Integer> params = new HashMap<>();
@@ -64,8 +64,8 @@ public class EstadosControlador {
         estado = estadose.crear(estado);
     }
 
-    public void editar(Estados doctipo) {
-        this.estado = estadose.actualizar(doctipo);
+    public void editar(Estados estado) {
+        this.estado = estadose.actualizar(estado);
     }
 
 }
