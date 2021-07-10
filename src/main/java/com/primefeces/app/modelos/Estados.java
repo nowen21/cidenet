@@ -25,7 +25,7 @@ public class Estados implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private Integer idxxxxxx;
     @Basic(optional = false)
     @Column(name = "estadoxx")
     private String estadoxx;
@@ -34,20 +34,20 @@ public class Estados implements Serializable {
     }
 
     public Estados(Integer id) {
-        this.id = id;
+        this.idxxxxxx = id;
     }
 
     public Estados(Integer id, String estadoxx) {
-        this.id = id;
+        this.idxxxxxx = id;
         this.estadoxx = estadoxx;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdxxxxxx() {
+        return idxxxxxx;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdxxxxxx(Integer id) {
+        this.idxxxxxx = id;
     }
 
     public String getEstadoxx() {
@@ -61,7 +61,7 @@ public class Estados implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idxxxxxx != null ? idxxxxxx.hashCode() : 0);
         return hash;
     }
 
@@ -72,7 +72,7 @@ public class Estados implements Serializable {
             return false;
         }
         Estados other = (Estados) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idxxxxxx == null && other.idxxxxxx != null) || (this.idxxxxxx != null && !this.idxxxxxx.equals(other.idxxxxxx))) {
             return false;
         }
         return true;
@@ -80,7 +80,7 @@ public class Estados implements Serializable {
 
     @Override
     public String toString() {
-        return "com.primefeces.app.modelos.Estados[ id=" + id + " ]";
+        return "com.primefeces.app.modelos.Estados[ id=" + idxxxxxx + " ]";
     }
-    
+
 }

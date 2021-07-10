@@ -42,7 +42,7 @@ public class DoctiposControlador {
         return doctipo;
     }
 
-    public void setArea(Doctipos doctipo) {
+    public void setDoctipo(Doctipos doctipo) {
         this.doctipo = doctipo;
     }
 
