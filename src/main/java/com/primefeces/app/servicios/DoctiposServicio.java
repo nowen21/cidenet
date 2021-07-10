@@ -19,15 +19,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DoctiposServicio {
-    
-    @Autowired 
+
+    @Autowired
     private DoctiposRepositorio doctipor;
+
     public Map<String, Integer> getDoctipos() {
-    Map<String, Integer> params = new HashMap<>();
-    List<Doctipos> parametr = doctipor.findAll();
-      for (int i = 0; i < parametr.size(); i++) {
-        params.put(parametr.get(i).getTipo(), parametr.get(i).getId());
-      }
-    return params;
-  }
+        Map<String, Integer> params = new HashMap<>();
+        List<Doctipos> parametr = doctipor.findAll();
+        for (int i = 0; i < parametr.size(); i++) {
+            params.put(parametr.get(i).getTipo(), parametr.get(i).getIdxxxxxx());
+        }
+        return params;
+    }
+
+    public List<Doctipos> getListdoctipos() {
+        List<Doctipos> parametr = doctipor.findAll();
+        return parametr;
+    }
+
+    public Doctipos crear(Doctipos doctipo) {
+        return doctipor.save(doctipo);
+    }
+
+    public Doctipos actualizar(Doctipos doctipo) {
+        return doctipor.findByIdxxxxxx(doctipo.getIdxxxxxx());
+    }
 }

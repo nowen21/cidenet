@@ -26,7 +26,7 @@ public class Doctipos implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private Integer idxxxxxx;
     @Basic(optional = false)
     @Column(name = "tipo")
     private String tipo;
@@ -35,20 +35,20 @@ public class Doctipos implements Serializable {
     }
 
     public Doctipos(Integer id) {
-        this.id = id;
+        this.idxxxxxx = id;
     }
 
     public Doctipos(Integer id, String tipo) {
-        this.id = id;
+        this.idxxxxxx = id;
         this.tipo = tipo;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdxxxxxx() {
+        return idxxxxxx;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdxxxxxx(Integer id) {
+        this.idxxxxxx = id;
     }
 
     public String getTipo() {
@@ -62,7 +62,7 @@ public class Doctipos implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idxxxxxx != null ? idxxxxxx.hashCode() : 0);
         return hash;
     }
 
@@ -73,7 +73,7 @@ public class Doctipos implements Serializable {
             return false;
         }
         Doctipos other = (Doctipos) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idxxxxxx == null && other.idxxxxxx != null) || (this.idxxxxxx != null && !this.idxxxxxx.equals(other.idxxxxxx))) {
             return false;
         }
         return true;
@@ -81,7 +81,7 @@ public class Doctipos implements Serializable {
 
     @Override
     public String toString() {
-        return "com.primefeces.app.modelos.Doctipos[ id=" + id + " ]";
+        return "com.primefeces.app.modelos.Doctipos[ id=" + idxxxxxx + " ]";
     }
     
 }

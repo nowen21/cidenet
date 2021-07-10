@@ -5,10 +5,10 @@
  */
 package com.primefeces.app.controladores;
 
-import com.primefeces.app.modelos.Usuarios;
-import com.primefeces.app.repositorios.UsuariosRepositorio;
+import com.primefeces.app.modelos.Doctipos;
 import com.primefeces.app.servicios.DoctiposServicio;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.ocpsoft.rewrite.annotation.Join;
@@ -25,10 +25,42 @@ public class DoctiposControlador {
 
     @Autowired
     private DoctiposServicio doctipos;
+    private Doctipos doctipo;
+    
+     private List<Doctipos> listdoctipos;
 
-   Map<String, Integer> params = new HashMap<>();
+
+    Map<String, Integer> params = new HashMap<>();
+
     public Map<String, Integer> getDoctipos() {
         return doctipos.getDoctipos();
+    }
+
+    
+    
+    public Doctipos getDoctipo() {
+        return doctipo;
+    }
+
+    public void setArea(Doctipos doctipo) {
+        this.doctipo = doctipo;
+    }
+
+    public List<Doctipos> getListdoctipos() {
+        return doctipos.getListdoctipos();
+    }
+
+    public Doctipos nuevo() {
+        doctipo = new Doctipos();
+        return doctipo;
+    }
+
+    public void crear() {
+        doctipo = doctipos.crear(doctipo);
+    }
+
+    public void editar(Doctipos doctipo) {
+        this.doctipo = doctipos.actualizar(doctipo);
     }
 
 }

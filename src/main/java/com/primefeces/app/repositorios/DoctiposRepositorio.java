@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DoctiposRepositorio extends JpaRepository<Doctipos, Integer>{
-    
+    public Doctipos findByIdxxxxxx(Integer id);
 }
