@@ -19,15 +19,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AreasServicio {
-    
-    @Autowired 
+
+    @Autowired
     private AreasRepositorio areasrep;
+
     public Map<String, Integer> getAreas() {
-    Map<String, Integer> params = new HashMap<>();
-    List<Areas> parametr = areasrep.findAll();
-      for (int i = 0; i < parametr.size(); i++) {
-        params.put(parametr.get(i).getArea(), parametr.get(i).getId());
-      }
-    return params;
-  }
+        Map<String, Integer> params = new HashMap<>();
+        List<Areas> parametr = areasrep.findAll();
+        for (int i = 0; i < parametr.size(); i++) {
+            params.put(parametr.get(i).getArea(), parametr.get(i).getIdxxxxxx());
+        }
+        return params;
+    }
+
+    public List<Areas> getLisareas() {
+        List<Areas> parametr = areasrep.findAll();
+        return parametr;
+    }
+
+    public Areas crear(Areas area) {
+        return areasrep.save(area);
+    }
+
+    public Areas actualizar(Areas area) {
+        return areasrep.findByIdxxxxxx(area.getIdxxxxxx());
+    }
 }

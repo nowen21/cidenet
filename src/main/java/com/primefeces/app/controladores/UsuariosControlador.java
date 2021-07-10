@@ -5,14 +5,11 @@
  */
 package com.primefeces.app.controladores;
 
-import static com.fasterxml.jackson.databind.util.ISO8601Utils.format;
 import com.primefeces.app.modelos.Usuarios;
 import com.primefeces.app.servicios.UsuariosServicio;
 import java.io.Serializable;
-import static java.lang.String.format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -38,7 +35,6 @@ public class UsuariosControlador implements Serializable {
     private Date minDateTime;
     private Date maxDateTime;
 
-    private String accionxx;
 
     @PostConstruct
     public void init() throws ParseException {
@@ -83,17 +79,10 @@ public class UsuariosControlador implements Serializable {
         return usuarios.usuarios();
     }
 
-    public void nuevoUsuario() {
+    public void nuevoUsuario() {  System.out.println("com.primefeces.app.controladores.UsuariosControlador.nuevoUsuario()");
         this.usuariox = new Usuarios();
     }
 
-    public String getAccionxx() {
-        return accionxx;
-    }
-
-    public void setAccionxx(String accionxx) {
-        this.accionxx = accionxx;
-    }
 
     public void registrar() {
         usuarios.registrar(usuariox);
@@ -124,4 +113,6 @@ public class UsuariosControlador implements Serializable {
         return maxDateTime;
     }
 
+    
+    
 }

@@ -7,106 +7,60 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="layout.xhtml">
         <ui:define name="content">
-           <h:form id="productForm">
-                <p:panel header="Administración de los usuarios">
+            <h:form id="productForm">
+                <p:panel header="Administración de las áreas administrativas">
                     <p:growl id="messages" showDetail="true"/>
 
                     <p:toolbar>
                         <p:toolbarGroup>
-                            <p:commandButton value="Nuevo Usuario" icon="pi pi-plus" actionListener="#{usuariosControlador.nuevoUsuario}"
-                                             update=":formdialogcrud:manage-dialogcrud-content" oncomplete="PF('manageDialogCrud').show()"
+                            <p:commandButton value="Nueva Area" icon="pi pi-plus" actionListener="#{areasControlador.nuevo()}"  
+                                             update=":formdialogcrud:dialogoid" oncomplete="PF('manageDialogCrud').show()"
                                              styleClass="ui-button-success" style="margin-right: .5rem">
-                                <p:resetInput target=":formdialogcrud:manage-dialogcrud-content"/>
+                                <p:resetInput target=":formdialogcrud:dialogoid"/>
                             </p:commandButton>
-
                         </p:toolbarGroup>
                     </p:toolbar>
-                    <p:dataTable id="dt-products" widgetVar="dtProducts" var="usuario" value="#{usuariosControlador.usuarios}"
+                    <p:dataTable id="dt-usuarios" widgetVar="dtProducts" var="area" value="#{areasControlador.listareas}"
                                  reflow="true" styleClass="products-table"
-                                 rowKey="#{usuario.id}" paginator="true"
+                                 rowKey="#{area.idxxxxxx}" paginator="true"
                                  rows="10" rowSelectMode="add" paginatorPosition="bottom">
-                        <p:column headerText="Id" sortBy="#{usuario.idxxxxxx}" filterBy="#{usuario.idxxxxxx}">
-                            <h:outputText value="#{usuario.idxxxxxx}"/>
+                        <p:column headerText="Id" sortBy="#{area.idxxxxxx}" filterBy="#{area.idxxxxxx}">
+                            <h:outputText value="#{area.idxxxxxx}"/>
                         </p:column>
-                        <p:column headerText="Primer Apellido" sortBy="#{usuario.seguapel}" filterBy="#{usuario.seguapel}">
-                            <h:outputText value="#{usuario.seguapel}"/>
+                        <p:column headerText="Area" sortBy="#{area.area}" filterBy="#{area.area}">
+                            <h:outputText value="#{area.area}"/>
                         </p:column>
-                        <p:column headerText="Segundo Apellido" sortBy="#{usuario.primapel}" filterBy="#{usuario.primapel}">
-                            <h:outputText value="#{usuario.primapel}"/>
-                        </p:column>
-                        <p:column headerText="Primer Nombre" sortBy="#{usuario.primnomb}" filterBy="#{usuario.primnomb}">
-                            <h:outputText value="#{usuario.primnomb}"/>
-                        </p:column>
-                        <p:column headerText="Segundo Nombre" sortBy="#{usuario.segunomb}" filterBy="#{usuario.segunomb}">
-                            <h:outputText value="#{usuario.segunomb}"/>
-                        </p:column>
-                        <p:column headerText="Otro Nombre" sortBy="#{usuario.otronomb}" filterBy="#{usuario.otronomb}">
-                            <h:outputText value="#{usuario.otronomb}"/>
-                        </p:column>
-                        <p:column headerText="Cédula" sortBy="#{usuario.cedulaxx}" filterBy="#{usuario.cedulaxx}">
-                            <h:outputText value="#{usuario.cedulaxx}"/>
-                        </p:column>
-                        <p:column headerText="Email" sortBy="#{usuario.emailxxx}" filterBy="#{usuario.emailxxx}">
-                            <h:outputText value="#{usuario.emailxxx}"/>
-                        </p:column>
-                        <p:column headerText="Email" sortBy="#{usuario.emailxxx}" filterBy="#{usuario.emailxxx}">
-                            <h:outputText value="#{usuario.emailxxx}"/>
+                        <p:column >
+                            <p:commandButton icon="pi pi-pencil" update=":formdialogcrud:dialogoid"
+                                             oncomplete="PF('manageDialogCrud').show()"
+                                             styleClass="edit-button rounded-button ui-button-success" process="@this"
+                                             actionListener="#{areasControlador.editar(area)}">
+                                <p:resetInput target=":formdialogcrud:dialogoid"/>
+                            </p:commandButton>
                         </p:column>
                     </p:dataTable>
                 </p:panel>
             </h:form>
             <h:form id="formdialogcrud">
-                <p:dialog header="Product Details" modal="true" width="60%" height="350"  showEffect="fade" hideEffect="fade" resizable="false"
+                <p:dialog id="dialogoid" header="Gestionar Areas Administrativas" modal="true" width="60%" height="1d50"  showEffect="fade" hideEffect="fade" resizable="false"
                           widgetVar="manageDialogCrud" responsive="true">
                     <p:outputPanel id="manage-dialogcrud-content" class="ui-fluid">
                         <div class="ui-g">
-                            <div class="ui-g-4">                                
-                                <label for="primapel">Primer Apellido</label>
-                                <p:inputText id="primapel" type="text" label="Primer Apellido" value="#{usuariosControlador.usuariox.primapel}">
-                                  
+                            <div class="ui-g-3"></div>    
+                            <div class="ui-g-6">                                
+                                <label for="primapel">Area</label>
+                                <p:inputText id="primapel" type="text" label="El Primer Apellido" value="#{areasControlador.area.area}">
+                                    <f:validator validatorId="CampoRequeridoValidator"/>
                                 </p:inputText>
                                 <h:message for="primapel" style="color:red" />
                             </div>
-                            <div class="ui-g-4">
-                                <label for="seguapel">Segundo Apellido</label>
-                                <p:inputText id="seguapel" type="text" label="Primer Apellido" value="#{usuariosControlador.usuariox.seguapel}" />
-                            </div>
-                            <div class="ui-g-4">
-                                <label for="primnomb">Primer Nombre</label>
-                                <p:inputText id="primnomb" type="text" value="#{usuariosControlador.usuariox.primnomb}"   />
-                            </div>
-                            <div class="ui-g-4">
-                                <label for="segunomb">Segundo Nombre</label>
-                                <p:inputText id="segunomb" type="text" value="#{usuariosControlador.usuariox.segunomb}"  />
-                            </div>
-                            <div class="ui-g-4">
-                                <label for="otronomb">Otro Nombre</label>
-                                <p:inputText id="otronomb" type="text" value="#{usuariosControlador.usuariox.segunomb}" />
-                            </div>
-
-                            <div class="ui-g-4">
-                                <label for="cedulax">C&Eacute;dula</label>
-                                <p:inputText id="cedulaxx" type="text"  />
-                            </div>
-
-                            <div class="ui-g-4">
-                                <label for="doctipoid">Tipo de Documento</label>
-                                <p:inputText id="doctipoid" type="text"  />
-                            </div>
-                            <div class="ui-g-4">
-                                <label for="areaid">&Aacute;rea Administrativa</label>
-                                <p:inputText id="areid" type="text" />
-                            </div>
-                            <div class="ui-g-4">
-                                <label for="paiseid">Pa&Iacute;s donde labora</label>
-                                <p:inputText id="paiseid" type="text"  />
-                            </div>
+                            <div class="ui-g-3"></div>   
                         </div>
 
                     </p:outputPanel>
                     <f:facet name="footer">
-                        <p:commandButton value="Guardar Usuario" icon="pi pi-check" actionListener="#{usuariosControlador.guardarUsuario}"
-                                         update="manage-dialogcrud-content" process="manage-dialogcrud-content @this"/>
+                        <p:commandButton value="Guardar/Editar" icon="pi pi-check" actionListener="#{areasControlador.crear()}"
+                                         update="manage-dialogcrud-content, :productForm:dt-usuarios" process="manage-dialogcrud-content @this"/>
                         <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('manageDialogCrud').hide()"
                                          class="ui-button-secondary"/>
                     </f:facet>

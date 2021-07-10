@@ -25,7 +25,7 @@ public class Areas implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private Integer idxxxxxx;
     @Basic(optional = false)
     @Column(name = "area")
     private String area;
@@ -33,21 +33,21 @@ public class Areas implements Serializable {
     public Areas() {
     }
 
-    public Areas(Integer id) {
-        this.id = id;
+    public Areas(Integer idxxxxxx) {
+        this.idxxxxxx = idxxxxxx;
     }
 
-    public Areas(Integer id, String area) {
-        this.id = id;
+    public Areas(Integer idxxxxxx, String area) {
+        this.idxxxxxx = idxxxxxx;
         this.area = area;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdxxxxxx() {
+        return idxxxxxx;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdxxxxxx(Integer idxxxxxx) {
+        this.idxxxxxx = idxxxxxx;
     }
 
     public String getArea() {
@@ -62,7 +62,7 @@ public class Areas implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idxxxxxx != null ? idxxxxxx.hashCode() : 0);
         return hash;
     }
 
@@ -73,7 +73,7 @@ public class Areas implements Serializable {
             return false;
         }
         Areas other = (Areas) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idxxxxxx == null && other.idxxxxxx != null) || (this.idxxxxxx != null && !this.idxxxxxx.equals(other.idxxxxxx))) {
             return false;
         }
         return true;
@@ -81,7 +81,7 @@ public class Areas implements Serializable {
 
     @Override
     public String toString() {
-        return "com.primefeces.app.modelos.Areas[ id=" + id + " ]";
+        return "com.primefeces.app.modelos.Areas[ id=" + idxxxxxx + " ]";
     }
     
 }
