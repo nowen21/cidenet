@@ -5,6 +5,8 @@
  */
 package com.primefeces.app.modelos;
 
+import com.primefeces.app.Anotaciones.CedulaAnotacion;
+import com.primefeces.app.Anotaciones.SinenieAnotacion;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -33,33 +35,36 @@ public class Usuarios implements Serializable {
     @Column(name = "id")
     private Integer idxxxxxx;
     @Basic(optional = false)
+    @SinenieAnotacion
     @Column(name = "primnomb")
     private String primnomb;
     @Basic(optional = false)
+    @SinenieAnotacion
     @Column(name = "segunomb")
     private String segunomb;
     @Basic(optional = false)
+    @SinenieAnotacion
     @Column(name = "primapel")
     private String primapel;
+    @SinenieAnotacion
     @Basic(optional = false)
     @Column(name = "seguapel")
     private String seguapel;
     @Basic(optional = false)
+    @SinenieAnotacion
     @Column(name = "otronomb")
     private String otronomb;
     @Basic(optional = false)
+    @CedulaAnotacion
     @Column(name = "cedulaxx")
     private String cedulaxx;
-    @Basic(optional = false)
-    @Column(name = "emailxxx")
-    private String emailxxx;
     @Basic(optional = false)
     @Column(name = "fechingr")
     @Temporal(TemporalType.DATE)
     private Date fechingr;
-    @Column(name = "fhregistr")
+    @Column(name = "fhregist")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fhregistr;
+    private Date fhregist;
     @Basic(optional = false)
     private Integer areaid;
     @Basic(optional = false)
@@ -68,17 +73,28 @@ public class Usuarios implements Serializable {
     private Integer estadoid;
     @Basic(optional = false)
     private Integer paiseid;
+    @JoinColumn(name = "emailid", referencedColumnName = "idxxxxxx")
+    @ManyToOne(optional = false)
+    private Emails emailid;
+
+    public Emails getEmailid() {
+        return emailid;
+    }
+
+    public void setEmailid(Emails emailid) {
+        this.emailid = emailid;
+    }
 
     public Usuarios() {
         this.estadoid = 1;
-        this.fhregistr = new Date();
+        this.fhregist = new Date();
     }
 
     public Usuarios(Integer idxxxxxx) {
         this.idxxxxxx = idxxxxxx;
     }
 
-    public Usuarios(Integer idxxxxxx, String primnomb, String segunomb, String primapel, String seguapel, String otronomb, String cedulaxx, String emailxxx, Date fechingr) {
+    public Usuarios(Integer idxxxxxx, String primnomb, String segunomb, String primapel, String seguapel, String otronomb, String cedulaxx, Emails emailid, Date fechingr) {
         this.idxxxxxx = idxxxxxx;
         this.primnomb = primnomb;
         this.segunomb = segunomb;
@@ -86,7 +102,7 @@ public class Usuarios implements Serializable {
         this.seguapel = seguapel;
         this.otronomb = otronomb;
         this.cedulaxx = cedulaxx;
-        this.emailxxx = emailxxx;
+        this.emailid = emailid;
         this.fechingr = fechingr;
     }
 
@@ -146,28 +162,20 @@ public class Usuarios implements Serializable {
         this.cedulaxx = cedulaxx;
     }
 
-    public String getEmailxxx() {
-        return emailxxx;
-    }
-
-    public void setEmailxxx(String emailxxx) {
-        this.emailxxx = emailxxx;
+    public void setFechingr(Date fechingr) {
+        this.fechingr = fechingr;
     }
 
     public Date getFechingr() {
         return fechingr;
     }
 
-    public void setFechingr(Date fechingr) {
-        this.fechingr = fechingr;
-    }
-
-    public Date getFhregistr() {
-        return fhregistr;
+    public Date getFhregist() {
+        return fhregist;
     }
 
     public void setFhregistr(Date fhregistr) {
-        this.fhregistr = fhregistr;
+        this.fhregist = fhregistr;
     }
 
     public Integer getAreaid() {

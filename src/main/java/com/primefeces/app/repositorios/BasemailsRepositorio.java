@@ -5,7 +5,7 @@
  */
 package com.primefeces.app.repositorios;
 
-import com.primefeces.app.modelos.Usuarios;
+import com.primefeces.app.modelos.Basemails;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,10 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author NOWEN
  */
 @Repository
-public interface UsuariosRepositorio extends JpaRepository<Usuarios, Integer> {
-
-    public Usuarios findByIdxxxxxx(Integer usuariox);
-
-    public Usuarios findByCedulaxx(String cedulaxx);
-    
+public interface BasemailsRepositorio extends JpaRepository<Basemails, Integer>{
+    public Basemails findByEmailxxx(String emailxxx);
 }

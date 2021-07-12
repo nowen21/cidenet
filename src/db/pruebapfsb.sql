@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-07-2021 a las 23:47:43
+-- Tiempo de generación: 12-07-2021 a las 16:21:17
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.4.19
 
@@ -37,7 +37,27 @@ CREATE TABLE `areas` (
 --
 
 INSERT INTO `areas` (`id`, `area`) VALUES
-(1, 'Administración');
+(1, 'Administración'),
+(2, 'nueva area'),
+(3, 'otraa');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `basemails`
+--
+
+CREATE TABLE `basemails` (
+  `idxxxxxx` int(11) NOT NULL,
+  `emailxxx` varchar(300) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `basemails`
+--
+
+INSERT INTO `basemails` (`idxxxxxx`, `emailxxx`) VALUES
+(1, 'jose.jimenez@cidenet.com.co');
 
 -- --------------------------------------------------------
 
@@ -55,7 +75,28 @@ CREATE TABLE `doctipos` (
 --
 
 INSERT INTO `doctipos` (`id`, `tipo`) VALUES
-(1, 'CC');
+(1, 'CC7'),
+(2, 'TI7');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `emails`
+--
+
+CREATE TABLE `emails` (
+  `idxxxxxx` int(11) NOT NULL,
+  `emailxxx` varchar(300) NOT NULL DEFAULT '',
+  `consecutivo` int(11) NOT NULL DEFAULT 0,
+  `basemailid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `emails`
+--
+
+INSERT INTO `emails` (`idxxxxxx`, `emailxxx`, `consecutivo`, `basemailid`) VALUES
+(1, 'jose.jimenez@cidenet.com.co', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -74,7 +115,8 @@ CREATE TABLE `estados` (
 
 INSERT INTO `estados` (`id`, `estadoxx`) VALUES
 (1, 'ACTIVO'),
-(2, 'INACTIVO');
+(2, 'INACTIVO4'),
+(3, 'dddd');
 
 -- --------------------------------------------------------
 
@@ -111,7 +153,8 @@ CREATE TABLE `paises` (
 
 INSERT INTO `paises` (`id`, `pais`, `dominio`) VALUES
 (1, 'COLOMBIA', '@cidenet.com.co'),
-(2, 'ESTADOS UNIDOS', '@cidenet.com.us');
+(2, 'ESTADOS UNIDOS', '@cidenet.com.us'),
+(4, 'nicaraguas', '@cidenet.com.ni');
 
 -- --------------------------------------------------------
 
@@ -129,21 +172,19 @@ CREATE TABLE `usuarios` (
   `paiseid` int(11) NOT NULL COMMENT 'Pais del empleo',
   `doctipoid` int(11) NOT NULL COMMENT 'Tipo de identificación',
   `cedulaxx` varchar(20) NOT NULL DEFAULT '' COMMENT 'Número de Identificación',
-  `emailxxx` varchar(300) NOT NULL DEFAULT '' COMMENT 'Correo electrónico',
+  `emailid` int(20) NOT NULL COMMENT 'Correo electrónico',
   `fechingr` date NOT NULL COMMENT 'Fecha de Ingreso',
   `areaid` int(11) NOT NULL COMMENT 'Area para la cual es contratado',
   `estadoid` int(11) NOT NULL COMMENT 'Estado del registro',
-  `fhregistr` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp() COMMENT 'fecha y hora de registro'
+  `fhregist` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp() COMMENT 'fecha y hora de registro'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `primnomb`, `segunomb`, `primapel`, `seguapel`, `otronomb`, `paiseid`, `doctipoid`, `cedulaxx`, `emailxxx`, `fechingr`, `areaid`, `estadoid`, `fhregistr`) VALUES
-(1, 'JOSE', 'DUMAR', 'JIMENEZ', 'RUIZ', 'NOWENctttttlll', 1, 1, '17496705', 'ddjd', '2021-07-09', 1, 1, '2021-06-28 02:27:42'),
-(2, 'dafasd', 'dfasdf', 'fgfdg', 'dfasdf', 'fasdfsa', 1, 1, 'fasdfs', 'ddjd', '2021-07-09', 1, 1, '2021-07-09 20:34:42'),
-(3, 'vzcxv', 'vzcvz', 'cvvz', 'vzcvz', 'vcxvx', 1, 1, 'vzcv', 'ddjd', '2021-07-09', 1, 1, '2021-07-09 21:44:09');
+INSERT INTO `usuarios` (`id`, `primnomb`, `segunomb`, `primapel`, `seguapel`, `otronomb`, `paiseid`, `doctipoid`, `cedulaxx`, `emailid`, `fechingr`, `areaid`, `estadoid`, `fhregist`) VALUES
+(1, 'JOSE', 'DUMAR', 'JIMENEZ', 'RUIZ', 'NOWEN', 1, 1, '17496705', 1, '2021-07-12', 1, 1, '2021-07-12 14:10:29');
 
 --
 -- Índices para tablas volcadas
@@ -156,10 +197,25 @@ ALTER TABLE `areas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `basemails`
+--
+ALTER TABLE `basemails`
+  ADD PRIMARY KEY (`idxxxxxx`),
+  ADD UNIQUE KEY `emailxxx` (`emailxxx`);
+
+--
 -- Indices de la tabla `doctipos`
 --
 ALTER TABLE `doctipos`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `emails`
+--
+ALTER TABLE `emails`
+  ADD PRIMARY KEY (`idxxxxxx`),
+  ADD UNIQUE KEY `emailxxx` (`consecutivo`,`basemailid`) USING BTREE,
+  ADD KEY `emailid` (`basemailid`);
 
 --
 -- Indices de la tabla `estados`
@@ -181,7 +237,9 @@ ALTER TABLE `usuarios`
   ADD KEY `usuarios_ibfk_2` (`doctipoid`),
   ADD KEY `usuarios_ibfk_1` (`areaid`),
   ADD KEY `usuarios_ibfk_3` (`estadoid`),
-  ADD KEY `paise_id` (`paiseid`);
+  ADD KEY `paise_id` (`paiseid`),
+  ADD KEY `doctipoid` (`doctipoid`,`cedulaxx`),
+  ADD KEY `emailid` (`emailid`,`id`) USING BTREE;
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -191,35 +249,53 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `areas`
 --
 ALTER TABLE `areas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador del registro', AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador del registro', AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `basemails`
+--
+ALTER TABLE `basemails`
+  MODIFY `idxxxxxx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `doctipos`
 --
 ALTER TABLE `doctipos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador del registro', AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador del registro', AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `emails`
+--
+ALTER TABLE `emails`
+  MODIFY `idxxxxxx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador del registro', AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador del registro', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
 --
 ALTER TABLE `paises`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador del registro', AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador del registro', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'indentificador del registro', AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'indentificador del registro', AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `emails`
+--
+ALTER TABLE `emails`
+  ADD CONSTRAINT `emails_ibfk_1` FOREIGN KEY (`basemailid`) REFERENCES `basemails` (`idxxxxxx`);
 
 --
 -- Filtros para la tabla `usuarios`
@@ -228,7 +304,8 @@ ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`areaid`) REFERENCES `areas` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`doctipoid`) REFERENCES `doctipos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `usuarios_ibfk_3` FOREIGN KEY (`estadoid`) REFERENCES `estados` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `usuarios_ibfk_4` FOREIGN KEY (`paiseid`) REFERENCES `paises` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `usuarios_ibfk_4` FOREIGN KEY (`paiseid`) REFERENCES `paises` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `usuarios_ibfk_5` FOREIGN KEY (`emailid`) REFERENCES `emails` (`idxxxxxx`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

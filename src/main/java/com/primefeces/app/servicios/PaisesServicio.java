@@ -47,4 +47,7 @@ public class PaisesServicio {
     public Paises actualizar(Paises pais) {
         return paisesre.findByIdxxxxxx(pais.getIdxxxxxx());
     }
+    public Paises findByIdxxxxxx(Integer id){
+        return paisesre.findByIdxxxxxx(id);
+    }
 }

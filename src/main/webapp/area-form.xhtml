@@ -49,8 +49,8 @@
                             <div class="ui-g-3"></div>    
                             <div class="ui-g-6">                                
                                 <label for="primapel">Area</label>
-                                <p:inputText id="primapel" type="text" label="El Primer Apellido" value="#{areasControlador.area.area}">
-                                    <f:validator validatorId="CampoRequeridoValidator"/>
+                                <p:inputText id="primapel" type="text" rendered="true" label="El area" value="#{areasControlador.area.area}">
+                                    
                                 </p:inputText>
                                 <h:message for="primapel" style="color:red" />
                             </div>

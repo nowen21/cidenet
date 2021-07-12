@@ -7,6 +7,7 @@ package com.primefeces.app.controladores;
 
 import com.primefeces.app.modelos.Usuarios;
 import com.primefeces.app.servicios.UsuariosServicio;
+import com.primefeces.app.validaciones.ValidarUsuario;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,6 +16,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import org.ocpsoft.rewrite.annotation.Join;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +37,6 @@ public class UsuariosControlador implements Serializable {
 
     private Date minDateTime;
     private Date maxDateTime;
-
 
     @PostConstruct
     public void init() throws ParseException {
@@ -69,23 +71,19 @@ public class UsuariosControlador implements Serializable {
         this.seleusua = seleusua;
     }
 
-    public String save() {
-//        usuarior.save(usuariox);
-        usuariox = new Usuarios();
-        return "/product-list.xhtml?faces-redirect=true";
-    }
-
     public List<Usuarios> getUsuarios() {
         return usuarios.usuarios();
     }
 
-    public void nuevoUsuario() {  System.out.println("com.primefeces.app.controladores.UsuariosControlador.nuevoUsuario()");
+    public void nuevoUsuario() {
         this.usuariox = new Usuarios();
     }
 
-
-    public void registrar() {
+    public void registrar() { 
+        
+      
         usuarios.registrar(usuariox);
+
 //        if (this.selectedProduct.getCode() == null) {
 //            this.selectedProduct.setCode(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 9));
 //            this.products.add(this.selectedProduct);
@@ -98,7 +96,12 @@ public class UsuariosControlador implements Serializable {
 //        PrimeFaces.current().executeScript("PF('manageProductDialog').hide()");
 //        PrimeFaces.current().ajax().update("form:messages", "form:dt-products");
     }
-    
+
+    public void validar(FacesContext context, UIComponent toValidate, Object value)  {
+  
+        ValidarUsuario validarx = new ValidarUsuario(context, toValidate, value, usuarios);
+        validarx.validar();
+    }
 // consultar el usuario que se recibe por parametro
 
     public void leerUsuario(Usuarios usuarixx) {
@@ -113,6 +116,4 @@ public class UsuariosControlador implements Serializable {
         return maxDateTime;
     }
 
-    
-    
 }

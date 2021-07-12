@@ -48,8 +48,8 @@
                             <div class="ui-g-3"></div>    
                             <div class="ui-g-6">                                
                                 <label for="primapel">Estado</label>
-                                <p:inputText id="primapel" type="text" label="El Primer Apellido" value="#{estadosControlador.estado.estadoxx}">
-                                    <f:validator validatorId="CampoRequeridoValidator"/>
+                                <p:inputText id="primapel" type="text" required="true" label="El estado" value="#{estadosControlador.estado.estadoxx}">
+                                    
                                 </p:inputText>
                                 <h:message for="primapel" style="color:red" />
                             </div>

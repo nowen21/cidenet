@@ -2,11 +2,17 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="com.primefeces_app_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>com.primefeces.app.modelos.Usuarios</class>
     <class>com.primefeces.app.modelos.Paises</class>
     <class>com.primefeces.app.modelos.Doctipos</class>
     <class>com.primefeces.app.modelos.Estados</class>
     <class>com.primefeces.app.modelos.Areas</class>
+    <class>com.primefeces.app.modelos.Paises_1</class>
+    <class>com.primefeces.app.modelos.Doctipos_1</class>
+    <class>com.primefeces.app.modelos.Usuarios</class>
+    <class>com.primefeces.app.modelos.Estados_1</class>
+    <class>com.primefeces.app.modelos.Emails</class>
+    <class>com.primefeces.app.modelos.Areas_1</class>
+    <class>com.primefeces.app.modelos.Basemails</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pruebapfsb?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
