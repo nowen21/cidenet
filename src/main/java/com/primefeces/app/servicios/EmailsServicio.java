@@ -5,7 +5,9 @@
  */
 package com.primefeces.app.servicios;
 
+import com.primefeces.app.modelos.Basemails;
 import com.primefeces.app.modelos.Emails;
+import com.primefeces.app.modelos.Usuarios;
 import com.primefeces.app.repositorios.EmailsRepositorio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +30,8 @@ public class EmailsServicio {
         return parametr;
     }
 
-    public Emails crear(Emails parametr) {
-        return emailsre.save(parametr);
+    public Emails crear(Emails emailxxx) {
+        return emailsre.save(emailxxx);
     }
 
     public Emails actualizar(Emails parametr) {

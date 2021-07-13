@@ -14,6 +14,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  *
@@ -46,49 +47,59 @@ public class UsuariosServicio {
      */
     @Transactional
     public Usuarios registrar(Usuarios usuariox) {
-//        try {
         // validaciones para armar el correo
         String emailxxx = usuariox.getPrimnomb().toLowerCase().trim();
         emailxxx += ".";
+//        usuariox.setPrimapel(usuariox.getPrimapel() + " P");
         emailxxx += usuariox.getPrimapel().toLowerCase().trim();
-        emailxxx += paiservi.findByIdxxxxxx(usuariox.getPaiseid()).getDominio();
+        String dominiox = paiservi.findByIdxxxxxx(usuariox.getPaiseid()).getDominio();
+        System.out.println("pais "+dominiox);
         // se está editando
-        Basemails basemail = basemase.findByEmailxxx(emailxxx);
-        Emails emailsxx = new Emails();
-        if (basemail == null) { // crear nuevo correo y consecutivo
-             System.out.println("usuario 6");
-            // nueva base de correo
-            basemail = basemase.crear(new Basemails(emailxxx));
-            // consecutivo inicial
-            emailsxx = emailser.crear(new Emails(emailxxx, 0, basemail));
-        }
-       System.out.println("usuario 5");
-        // se está editando el usuario
-        if (usuariox.getIdxxxxxx() != null) {  
-            System.out.println("consecutivo"+usuariox.getEmailid().getConsecutivo());
-            if (usuariox.getEmailid().getConsecutivo() > 0) { System.out.println("usuario 1");
-                emailxxx = emailxxx + "." + usuariox.getEmailid().getConsecutivo();
-            }
-           System.out.println("usuario 2");
-            usuariox.getEmailid().setEmailxxx(emailxxx);
-        } else { // usuario nuevo
- System.out.println("usuario 4");
-            usuariox.setEmailid(emailsxx);
-        }
-        System.out.println("usuario 3");
+        emailxxx = StringUtils.replace(emailxxx, " ", "");
 
-//                    = List < Usuarios > correos = usuarior.findByEmailxxxStartsWith(emailxxx);
-//            for (Usuarios u : correos) {
-////            String correo = u.getEmailxxx();
-////            System.out.println("correo " + correo);
-//            }
-//        usuariox.setEmailxxx(emailxxx);
+        Basemails basemail = basemase.findByEmailxxx(emailxxx + dominiox);
+        Emails emailsxx = new Emails();
+
+        int consecut = 0;
+        // se está editando el usuario
+        if (usuariox.getIdxxxxxx() == null) {
+            if (basemail == null) {
+                usuariox = nuevoCorreo(usuariox, emailxxx, dominiox, basemail, emailsxx);
+            } else {
+                for (Emails u : basemail.getEmails()) {
+                    consecut = u.getConsecutivo();
+                }
+                consecut++;
+                emailsxx.setConsecutivo(consecut);
+                emailxxx = emailxxx + "." + consecut + dominiox;
+                emailsxx.setBasemailid(basemail);
+                emailsxx.setEmailxxx(emailxxx);
+                usuariox.setEmailid(emailser.crear(emailsxx));
+            }
+        } else { // usuario nuevo
+            if (basemail == null) { 
+                emailxxx = emailxxx + dominiox;
+                emailsxx=usuariox.getEmailid();
+                emailsxx.getBasemailid().setEmailxxx(emailxxx);
+                emailsxx.setEmailxxx(emailxxx);
+                emailsxx.setConsecutivo(consecut);
+                usuariox.setEmailid(emailsxx);
+            }
+        }
         usuariox.setEstadoId(1);
-        return usuarior.save(usuariox);
-//        } catch (Exception e) {
-//            return usuariox;
-//        }
-//       
+        return usuarior.save(usuariox);   
+    }
+
+    public Usuarios nuevoCorreo(Usuarios usuariox, String emailxxx, String dominiox, Basemails basemail, Emails emailsxx) {
+        emailxxx += dominiox;
+        basemail = new Basemails(emailxxx);
+        basemail = basemase.crear(basemail);
+        emailsxx.setBasemailid(basemail);
+        emailsxx.setConsecutivo(0);
+        emailsxx.setEmailxxx(emailxxx);
+        emailsxx = emailser.crear(emailsxx);
+        usuariox.setEmailid(emailsxx);
+        return usuariox;
     }
 
     /**

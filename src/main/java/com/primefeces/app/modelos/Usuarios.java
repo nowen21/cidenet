@@ -94,8 +94,7 @@ public class Usuarios implements Serializable {
         this.idxxxxxx = idxxxxxx;
     }
 
-    public Usuarios(Integer idxxxxxx, String primnomb, String segunomb, String primapel, String seguapel, String otronomb, String cedulaxx, Emails emailid, Date fechingr) {
-        this.idxxxxxx = idxxxxxx;
+    public Usuarios(String primnomb, String segunomb, String primapel, String seguapel, String otronomb, String cedulaxx, Emails emailid, Date fechingr) {
         this.primnomb = primnomb;
         this.segunomb = segunomb;
         this.primapel = primapel;
@@ -174,8 +173,8 @@ public class Usuarios implements Serializable {
         return fhregist;
     }
 
-    public void setFhregistr(Date fhregistr) {
-        this.fhregist = fhregistr;
+    public void setFhregist(Date fhregist) {
+        this.fhregist = fhregist;
     }
 
     public Integer getAreaid() {
@@ -232,7 +231,8 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "com.primefeces.app.modelos.Usuarios[ id=" + idxxxxxx + " ]";
+        return "Usuarios{" + "idxxxxxx=" + idxxxxxx + ", primnomb=" + primnomb + ", segunomb=" + segunomb + ", primapel=" + primapel + ", seguapel=" + seguapel + ", otronomb=" + otronomb + ", cedulaxx=" + cedulaxx + ", fechingr=" + fechingr + ", fhregist=" + fhregist + ", areaid=" + areaid + ", doctipoid=" + doctipoid + ", estadoid=" + estadoid + ", paiseid=" + paiseid + ", emailid=" + emailid + '}';
     }
 
+   
 }

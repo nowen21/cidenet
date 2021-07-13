@@ -72,6 +72,7 @@ public class UsuariosControlador implements Serializable {
     }
 
     public List<Usuarios> getUsuarios() {
+       
         return usuarios.usuarios();
     }
 
